@@ -7,7 +7,7 @@ yarn dev
 ## Access
 
 ```
-http://localhost:3000/preroom
+http://localhost:3000
 ```
 
 ## Livekit Server
