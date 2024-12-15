@@ -31,10 +31,13 @@ export default function RoomPage() {
     (async () => {
       try {
         const resp = await fetch(`/api/token?room=${room}&username=${name}`);
+        if (!resp.ok) {
+          throw new Error(`HTTP error! Status: ${resp.status}`);
+        }
         const data = await resp.json();
         setToken(data.token);
       } catch (e) {
-        console.error(e);
+        console.error("Error fetching token:", e);
       }
     })();
   }, [name]);
@@ -48,7 +51,7 @@ export default function RoomPage() {
       video={true}
       audio={true}
       token={token}
-      serverUrl={process.env.LIVEKIT_URL}
+      serverUrl={process.env.NEXT_PUBLIC_LIVEKIT_URL}
       data-lk-theme="default"
       style={{ height: "100dvh" }}
     >
