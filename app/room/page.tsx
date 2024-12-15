@@ -24,7 +24,7 @@ export default function RoomPage() {
 function Room() {
   const searchParams = useSearchParams();
   const name = searchParams.get("username") || ""; // クエリから名前を取得
-  const room = "quickstart-room";
+  const room = "live-stream-demo-room";
   const [token, setToken] = useState("");
 
   useEffect(() => {
@@ -52,18 +52,29 @@ function Room() {
   }
 
   return (
-    <LiveKitRoom
-      video={true}
-      audio={true}
-      token={token}
-      serverUrl={process.env.NEXT_PUBLIC_LIVEKIT_URL}
-      data-lk-theme="default"
-      style={{ height: "100dvh" }}
-    >
-      <MyVideoConference />
-      <RoomAudioRenderer />
-      <ControlBar />
-    </LiveKitRoom>
+    <div style={{ height: "100dvh", display: "flex", flexDirection: "column" }}>
+      {/* 名前表示 */}
+      <header
+        style={{ backgroundColor: "#1a1a1a", padding: "1rem", color: "white" }}
+      >
+        <h1>Room: {room}</h1>
+        <p>Participants: {name}</p>
+      </header>
+
+      {/* LiveKitRoom */}
+      <LiveKitRoom
+        video={true}
+        audio={true}
+        token={token}
+        serverUrl={process.env.NEXT_PUBLIC_LIVEKIT_URL}
+        data-lk-theme="default"
+        style={{ flex: 1 }}
+      >
+        <MyVideoConference />
+        <RoomAudioRenderer />
+        <ControlBar />
+      </LiveKitRoom>
+    </div>
   );
 }
 
