@@ -1,0 +1,10 @@
+# サーバーのリスニングポート
+port: 7880
+
+# APIキーとシークレット
+keys:
+  test-api-key: "this-is-a-very-secure-secret-key-1234567890"
+
+# TURNサーバーを無効化
+turn:
+  enabled: false
