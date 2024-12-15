@@ -1,5 +1,6 @@
 "use client";
 
+import React, { Suspense, useState, useEffect } from "react";
 import {
   ControlBar,
   GridLayout,
@@ -8,15 +9,19 @@ import {
   RoomAudioRenderer,
   useTracks,
 } from "@livekit/components-react";
-
 import "@livekit/components-styles";
-
-import { useEffect, useState } from "react";
 import { Track } from "livekit-client";
 import { useSearchParams } from "next/navigation";
-import React from "react";
 
 export default function RoomPage() {
+  return (
+    <Suspense fallback={<div>Loading room...</div>}>
+      <Room />
+    </Suspense>
+  );
+}
+
+function Room() {
   const searchParams = useSearchParams();
   const name = searchParams.get("username") || ""; // クエリから名前を取得
   const room = "quickstart-room";
