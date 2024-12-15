@@ -9,3 +9,9 @@ yarn dev
 ```
 http://localhost:3000/preroom
 ```
+
+## Livekit Server
+
+```
+livekit-server --config livekit.yaml
+```
