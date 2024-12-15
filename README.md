@@ -7,5 +7,5 @@ yarn dev
 ## Access
 
 ```
-http://localhost:3000/room
+http://localhost:3000/preroom
 ```

@@ -13,15 +13,21 @@ import "@livekit/components-styles";
 
 import { useEffect, useState } from "react";
 import { Track } from "livekit-client";
+import { useSearchParams } from "next/navigation";
 import React from "react";
 
-export default function Page() {
-  // TODO: get user input for room and name
+export default function RoomPage() {
+  const searchParams = useSearchParams();
+  const name = searchParams.get("username") || ""; // クエリから名前を取得
   const room = "quickstart-room";
-  const name = "quickstart-user";
   const [token, setToken] = useState("");
 
   useEffect(() => {
+    if (!name) {
+      alert("名前が入力されていません");
+      return;
+    }
+
     (async () => {
       try {
         const resp = await fetch(`/api/token?room=${room}&username=${name}`);
@@ -31,7 +37,7 @@ export default function Page() {
         console.error(e);
       }
     })();
-  }, []);
+  }, [name]);
 
   if (token === "") {
     return <div>Getting token...</div>;
@@ -43,24 +49,17 @@ export default function Page() {
       audio={true}
       token={token}
       serverUrl={process.env.LIVEKIT_URL}
-      // Use the default LiveKit theme for nice styles.
       data-lk-theme="default"
       style={{ height: "100dvh" }}
     >
-      {/* Your custom component with basic video conferencing functionality. */}
       <MyVideoConference />
-      {/* The RoomAudioRenderer takes care of room-wide audio for you. */}
       <RoomAudioRenderer />
-      {/* Controls for the user to start/stop audio, video, and screen
-      share tracks and to leave the room. */}
       <ControlBar />
     </LiveKitRoom>
   );
 }
 
 function MyVideoConference() {
-  // `useTracks` returns all camera and screen share tracks. If a user
-  // joins without a published camera track, a placeholder track is returned.
   const tracks = useTracks(
     [
       { source: Track.Source.Camera, withPlaceholder: true },
@@ -73,8 +72,6 @@ function MyVideoConference() {
       tracks={tracks}
       style={{ height: "calc(100vh - var(--lk-control-bar-height))" }}
     >
-      {/* The GridLayout accepts zero or one child. The child is used
-      as a template to render all passed in tracks. */}
       <ParticipantTile />
     </GridLayout>
   );
