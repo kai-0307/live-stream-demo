@@ -9,10 +9,10 @@ export default function PreRoomPage() {
 
   const handleJoin = () => {
     if (username.trim() === "") {
-      alert("名前を入力してください");
+      alert("Please enter your name");
       return;
     }
-    // 入室画面に遷移
+    // Navigate to the room page
     router.push(`/room?username=${encodeURIComponent(username)}`);
   };
 
@@ -25,25 +25,25 @@ export default function PreRoomPage() {
         alignItems: "center",
         height: "100vh",
         gap: "1rem",
-        backgroundColor: "#1a1a1a", // 背景を暗めに設定
-        color: "white", // 全体の文字色を白に
+        backgroundColor: "#1a1a1a", // Dark background
+        color: "white", // Text color white
       }}
     >
-      <h1>入室画面</h1>
+      <h1>Enter Room</h1>
       <input
         type="text"
-        placeholder="名前を入力してください"
+        placeholder="Enter your name"
         value={username}
         onChange={(e) => setUsername(e.target.value)}
         style={{
           padding: "0.5rem",
           fontSize: "1rem",
           width: "300px",
-          color: "black", // テキストの色を黒に
-          backgroundColor: "white", // 入力欄の背景色を白に
-          border: "2px solid white", // 枠線を白に
-          borderRadius: "8px", // 入力欄の角を丸める
-          outline: "none", // フォーカス時のデフォルト枠を消す
+          color: "black", // Text color inside input
+          backgroundColor: "white", // Input background color
+          border: "2px solid white", // Border color white
+          borderRadius: "8px", // Rounded corners
+          outline: "none", // Remove default outline
         }}
       />
       <button
@@ -52,13 +52,13 @@ export default function PreRoomPage() {
           padding: "0.5rem 1rem",
           fontSize: "1rem",
           cursor: "pointer",
-          border: "2px solid white", // 枠線を白に設定
-          borderRadius: "8px", // 角を丸める
-          backgroundColor: "transparent", // 背景を透明に
-          color: "white", // ボタンの文字色を白に
+          border: "2px solid white", // Border color white
+          borderRadius: "8px", // Rounded corners
+          backgroundColor: "transparent", // Transparent background
+          color: "white", // Button text color white
         }}
       >
-        入室
+        Join Room
       </button>
     </div>
   );
