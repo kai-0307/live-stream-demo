@@ -1,7 +1,13 @@
-## Getting Started
+## Getting Started in Local
 
 ```
 yarn dev
+```
+
+## Livekit Server
+
+```
+livekit-server --config livekit.yaml
 ```
 
 ## Access
@@ -24,8 +30,4 @@ http://localhost:3000/room
 
 ![room](public/img/room.png)
 
-## Livekit Server
 
-```
-livekit-server --config livekit.yaml
-```
