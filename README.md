@@ -30,4 +30,8 @@ http://localhost:3000/room
 
 ![room](public/img/room.png)
 
+## Related page
+
+https://docs.livekit.io/home/
+
 
